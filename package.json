@@ -12,7 +12,7 @@
     "last 2 Edge versions"
   ],
   "scripts": {
-    "start": "webpack-dev-server --inline --port 9098 --config build/webpack.dev  --hot --progress --open",
+    "start": "webpack-dev-server --inline --config build/webpack.dev  --hot --progress --open",
     "build": "rimraf valuation & webpack --config build/webpack.prod"
   },
   "author": "RidingWind",
