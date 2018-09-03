@@ -23,6 +23,7 @@
 .left-box {
   width: 30%;
   text-align: center;
+  margin-bottom: calc(88 / 32 * 1rem); 
   background-color: white;
   /* padding-bottom: calc(16.5 / 16 * 1rem); */
 }
@@ -44,20 +45,46 @@
   border-bottom: 1px solid #F1F1F1;
 }
 
-.item-left[data-type="泸深300"]::before {
+.item-left[data-type="高估"]::before {
   position: absolute;
   top: calc(14 / 32 * 1rem);
   left: 0;
   display: block;
   content: '';
+  border-radius: 0 .1rem .1rem 0;
   width: calc(10 / 32 * 1rem);
   height: calc(99 / 32 * 1rem);
   background-color: #FC343A;
 }
 
+.item-left[data-type="低估"]::before {
+  position: absolute;
+  top: calc(14 / 32 * 1rem);
+  left: 0;
+  display: block;
+  content: '';
+  border-radius: 0 .1rem .1rem 0;
+  width: calc(10 / 32 * 1rem);
+  height: calc(99 / 32 * 1rem);
+  background-color: #1AC165;
+}
+
+.item-left[data-type="适中"]::before {
+  position: absolute;
+  top: calc(14 / 32 * 1rem);
+  left: 0;
+  display: block;
+  content: '';
+  border-radius: 0 .1rem .1rem 0;
+  width: calc(10 / 32 * 1rem);
+  height: calc(99 / 32 * 1rem);
+  background-color: #FF953F;
+}
+
 .item-left-name {
   display: inline;
   font-size: calc(30 / 32 * 1rem);
+  margin-bottom: calc(6 / 32 * 1rem);
   color: #434343 ;
 }
 
@@ -70,6 +97,7 @@
 .right-box {
   width: 70%;
   overflow: scroll;
+  margin-bottom: calc(88 / 32 * 1rem); 
   background-color: white;
 }
 
@@ -88,6 +116,11 @@
   line-height: calc(60 / 32 * 1rem);
   text-align: center;
   border-bottom: 1px solid #F1F1F1;
+}
+
+.right-nav-time {
+  composes: right-nav;
+  width: 40%;
 }
 
 .span-item {
@@ -190,16 +223,24 @@
   display: flex;
   align-items: center;
   height: calc(126 / 32 * 1rem);
-  border-bottom: 1px solid #F1F1F1;
 }
 
 .item-right-main {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-grow: 0;
   flex-shrink: 0;
   width: 33.3333%;
+  height: 100%;
   text-align: center;
   font-size: 1rem;
+  border-bottom: 1px solid #F1F1F1;
+}
+
+.item-right-main-time {
+  composes: item-right-main;
+  width: 41%;
 }
 
 .footer {

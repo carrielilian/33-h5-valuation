@@ -2,24 +2,52 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Header from '../public/Header';
 import styles from '../Main/main.css';
+import { actionType as mainSaga } from '../../models/sagas/main.saga';
 
 /* eslint-disable no-nested-ternary */
+/* eslint-disable no-param-reassign */
 class Main extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      clickType: '',
+      clickType: 'pe',
       isUp: false,
     };
   }
 
-  sortFunc = (type) => {
-    const { isUp } = this.state;
+  componentWillMount() {
+    const { dispatch } = this.props;
 
+    dispatch({ type: mainSaga.getData });
+  }
+
+  sortFunc = (type) => {
+    const { isUp, clickType } = this.state;
+    const typeState = (clickType === type) ? (!isUp) : false;
+    console.log(clickType);
     this.setState({
       clickType: type,
-      isUp: !isUp,
+      isUp: typeState,
     });
+  }
+
+  compare = property => (a, b) => {
+    const value1 = a[property];
+    const value2 = b[property];
+    return value1 - value2;
+  }
+
+  sort = (arr) => {
+    const { clickType, isUp } = this.state;
+    let temp;
+    if (arr.length <= 1) {
+      temp = arr;
+    } else {
+      const newArr = arr.sort(this.compare(clickType));
+      temp = isUp ? newArr.reverse() : newArr;
+    }
+
+    return temp;
   }
 
   getClassName = (type) => {
@@ -32,7 +60,30 @@ class Main extends PureComponent {
     return classtype;
   }
 
+  assortment = (pe, pePercent) => {
+    let a = '适中';
+
+    console.log(pe, pePercent);
+
+    if (pe < 16 && pePercent < 0.3) {
+      a = '低估';
+    } else if (pe > 20 && pePercent > 0.65) {
+      a = '高估';
+    }
+    // } else {
+    //   a = '适中';
+    // }
+
+    console.log(a);
+
+    return a;
+  }
+
   render() {
+    const { main } = this.props;
+    const sortData = this.sort(main);
+    console.log(sortData);
+
     return (
       <div className={styles.main}>
         <Header
@@ -43,17 +94,25 @@ class Main extends PureComponent {
             <nav className={styles.leftNav}>
               指数名称
             </nav>
-            <div className={styles.itemLeft} data-type="泸深300">
-              <div className={styles.itemLeftName}>泸深300</div>
-              <div className={styles.itemLeftNum}>SH000300</div>
-            </div>
+            {
+              sortData.map((item, index) => (
+                <div key={index}>
+                  <div
+                    className={styles.itemLeft}
+                    data-type={this.assortment(item.pe, item.pePercent)}
+                  >
+                    <div className={styles.itemLeftName}>{item.name}</div>
+                    <div className={styles.itemLeftNum}>{item.code}</div>
+                  </div>
+                </div>
+              ))
+            }
           </div>
 
           <div className={styles.rightBox}>
             <nav className={styles.rightBoxNav}>
               <div
                 className={styles.rightNav}
-                // onClick={() => this.sortFunc('pePercentile')}
               >
                 <span
                   onClick={() => this.sortFunc('pe')}
@@ -64,8 +123,8 @@ class Main extends PureComponent {
               </div>
               <div className={styles.rightNav}>
                 <span
-                  onClick={() => this.sortFunc('pePercentile')}
-                  className={this.getClassName('pePercentile')}
+                  onClick={() => this.sortFunc('pePercent')}
+                  className={this.getClassName('pePercent')}
                 >
                   PE百分位
                 </span>
@@ -80,16 +139,16 @@ class Main extends PureComponent {
               </div>
               <div className={styles.rightNav}>
                 <span
-                  onClick={() => this.sortFunc('pbPercentile')}
-                  className={this.getClassName('pbPercentile')}
+                  onClick={() => this.sortFunc('pbPercent')}
+                  className={this.getClassName('pbPercent')}
                 >
                   PB百分位
                 </span>
               </div>
               <div className={styles.rightNav}>
                 <span
-                  onClick={() => this.sortFunc('dividend')}
-                  className={this.getClassName('dividend')}
+                  onClick={() => this.sortFunc('yeild')}
+                  className={this.getClassName('yeild')}
                 >
                   股息率
                 </span>
@@ -102,21 +161,23 @@ class Main extends PureComponent {
                   ROE
                 </span>
               </div>
-              <div className={styles.rightNav}>
+              <div className={styles.rightNavTime}>
                 <span className={styles.spanItemTime}>起始时间</span>
               </div>
             </nav>
-
-
-            <div className={styles.itemRight}>
-              <div className={styles.itemRightMain}>8.86</div>
-              <div className={styles.itemRightMain}>33.22%</div>
-              <div className={styles.itemRightMain}>3.43</div>
-              <div className={styles.itemRightMain}>24.23%</div>
-              <div className={styles.itemRightMain}>3.34%</div>
-              <div className={styles.itemRightMain}>5.34%</div>
-              <div className={styles.itemRightMain}>2018.08.09</div>
-            </div>
+            {
+              sortData.map((item, index) => (
+                <div className={styles.itemRight} key={index}>
+                  <div className={styles.itemRightMain}>{item.pe}</div>
+                  <div className={styles.itemRightMain}>{item.pePercent}</div>
+                  <div className={styles.itemRightMain}>{item.pb}</div>
+                  <div className={styles.itemRightMain}>{item.pbPercent}</div>
+                  <div className={styles.itemRightMain}>{item.yeild}</div>
+                  <div className={styles.itemRightMain}>{item.roe}</div>
+                  <div className={styles.itemRightMainTime}>{item.startDate}</div>
+                </div>
+              ))
+            }
           </div>
         </div>
 
@@ -130,4 +191,8 @@ class Main extends PureComponent {
   }
 }
 
-export default connect()(Main);
+const mapStateToProps = state => ({
+  main: state.main.main,
+});
+
+export default connect(mapStateToProps)(Main);
