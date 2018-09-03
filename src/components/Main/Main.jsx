@@ -24,7 +24,7 @@ class Main extends PureComponent {
   sortFunc = (type) => {
     const { isUp, clickType } = this.state;
     const typeState = (clickType === type) ? (!isUp) : false;
-    console.log(clickType);
+
     this.setState({
       clickType: type,
       isUp: typeState,
@@ -63,8 +63,6 @@ class Main extends PureComponent {
   assortment = (pe, pePercent) => {
     let a = '适中';
 
-    console.log(pe, pePercent);
-
     if (pe < 16 && pePercent < 0.3) {
       a = '低估';
     } else if (pe > 20 && pePercent > 0.65) {
@@ -74,15 +72,12 @@ class Main extends PureComponent {
     //   a = '适中';
     // }
 
-    console.log(a);
-
     return a;
   }
 
   render() {
     const { main } = this.props;
     const sortData = this.sort(main);
-    console.log(sortData);
 
     return (
       <div className={styles.main}>
