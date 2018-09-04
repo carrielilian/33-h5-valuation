@@ -177,9 +177,11 @@ class Main extends PureComponent {
         </div>
 
         <footer className={styles.footer}>
-          <div className={styles.footerItem} data-type="估值较低">估值较低</div>
-          <div className={styles.footerItem} data-type="估值适中">估值适中</div>
-          <div className={styles.footerItem} data-type="估值较高">估值较高</div>
+          <div className={styles.maxWidth}>
+            <div className={styles.footerItem} data-type="估值较低">估值较低</div>
+            <div className={styles.footerItem} data-type="估值适中">估值适中</div>
+            <div className={styles.footerItem} data-type="估值较高">估值较高</div>
+          </div>
         </footer>
       </div>
     );

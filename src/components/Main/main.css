@@ -9,15 +9,8 @@
   font-size: calc(26 / 32 * 1rem);
   align-items: center;
   justify-content: space-between;
-}
-
-@media screen and (min-width: 430px) {
-  .left-box {
-    width: 30%;
-    text-align: center;
-    background-color: white;
-    padding-bottom: calc(16.5 / 16 * 1rem);
-  }
+  max-width: calc(1920 / 32 * 1rem);
+  margin: 0 auto;
 }
 
 .left-box {
@@ -133,7 +126,7 @@
   position: absolute;
   display: block;
   content: '';
-  top: calc(15 / 32 * 1rem);
+  top: calc(12 / 32 * 1rem);
   right: calc(-20 / 32 * 1rem);
   width: calc(13.2 / 32 * 1rem);
   height: calc(7 / 32 * 1rem);
@@ -147,7 +140,7 @@
   display: block;
   content: '';
   right: calc(-20 / 32 * 1rem);
-  bottom: calc(14 / 32 * 1rem);
+  bottom: calc(12 / 32 * 1rem);
   width: calc(13.2 / 32 * 1rem);
   height: calc(7 / 32 * 1rem);
   border-style: solid;
@@ -163,7 +156,7 @@
   position: absolute;
   display: block;
   content: '';
-  top: calc(15 / 32 * 1rem);
+  top: calc(12 / 32 * 1rem);
   right: calc(-20 / 32 * 1rem);
   width: calc(13.2 / 32 * 1rem);
   height: calc(7 / 32 * 1rem);
@@ -177,7 +170,7 @@
   display: block;
   content: '';
   right: calc(-20 / 32 * 1rem);
-  bottom: calc(14 / 32 * 1rem);
+  bottom: calc(12 / 32 * 1rem);
   width: calc(13.2 / 32 * 1rem);
   height: calc(7 / 32 * 1rem);
   border-style: solid;
@@ -193,7 +186,7 @@
   position: absolute;
   display: block;
   content: '';
-  top: calc(15 / 32 * 1rem);
+  top: calc(12 / 32 * 1rem);
   right: calc(-20 / 32 * 1rem);
   width: calc(13.2 / 32 * 1rem);
   height: calc(7 / 32 * 1rem);
@@ -207,7 +200,7 @@
   display: block;
   content: '';
   right: calc(-20 / 32 * 1rem);
-  bottom: calc(14 / 32 * 1rem);
+  bottom: calc(12 / 32 * 1rem);
   width: calc(13.2 / 32 * 1rem);
   height: calc(7 / 32 * 1rem);
   border-style: solid;
@@ -254,22 +247,29 @@
   background-color: white;
 }
 
+.max-width {
+  max-width: calc(1920 / 32 * 1rem);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
 .footer-item {
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 33.3333%;
   line-height: calc(88 / 32 * 1rem);
   text-align: center;
 }
 
 .footer-item::before {
-  position: absolute;
   display: block;
   content: '';
-  top: calc(37 / 32 * 1rem);
-  left: calc(46 / 32 * 1rem);
   width: calc(15 / 32 * 1rem);
   height: calc(15 / 32 * 1rem);
+  margin-right: calc(15 / 32 * 1rem);
 }
 
 .footer-item[data-type="估值较低"]::before {
@@ -282,4 +282,17 @@
 
 .footer-item[data-type="估值较高"]::before {
   background-color: #FC343A;
+}
+
+@media screen and (min-width: 430px) {
+  .left-box {
+    width: 30%;
+    text-align: center;
+    background-color: white;
+    padding-bottom: calc(16.5 / 16 * 1rem);
+  }
+
+  .right-box {
+    margin-bottom: calc(120 / 32 * 1rem);
+  }
 }
