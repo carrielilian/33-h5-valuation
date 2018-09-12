@@ -4,9 +4,8 @@ import Header from '../public/Header';
 import styles from '../Main/main.css';
 import { actionType as mainSaga } from '../../models/sagas/main.saga';
 
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-param-reassign */
-/* eslint-disable react/no-did-mount-set-state */
+/* eslint-disable no-nested-ternary, no-param-reassign, react/no-did-mount-set-state */
+
 class Main extends PureComponent {
   constructor(props) {
     super(props);
@@ -30,7 +29,7 @@ class Main extends PureComponent {
       this.setState({
         hHeight: topDivHeight,
       });
-    }, 20);
+    }, 80);
   }
 
   sortFunc = (type) => {
