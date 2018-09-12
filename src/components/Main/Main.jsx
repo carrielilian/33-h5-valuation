@@ -23,10 +23,9 @@ class Main extends PureComponent {
   }
 
   componentDidMount() {
-    const topDivHeight = this.topDiv.clientHeight;
-    const footerDivHeight = this.footerDiv.clientHeight;
-
     setTimeout(() => {
+      const topDivHeight = this.topDiv.clientHeight;
+      const footerDivHeight = this.footerDiv.clientHeight;
       this.setState({
         Height: window.innerHeight - topDivHeight - footerDivHeight,
       });
