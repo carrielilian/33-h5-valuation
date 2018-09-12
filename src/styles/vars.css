@@ -10,6 +10,14 @@
   --border-color: #F2F1F7;
   --green: #2BC773;
   --red: #ff0000;
+  --valuation-white: #F1F1F1;
+  --valuation-red: #FC343A;
+  --valuation-green: #1AC165;
+  --valuation-orange: #FF953F;
+  --valuation-triangle-grey: #D8D8D8;
+  --valuation-font-grey: #9E9E9E;
+  --valuation-triangle-blue: #5984FE;
+
 
   --flex-center: {
     display: flex;
@@ -34,5 +42,27 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  --valuation-triangle: {
+    position: absolute;
+    display: block;
+    content: '';
+    right: calc(-20 / 32 * 1rem);
+    width: calc(13.2 / 32 * 1rem);
+    height: calc(7 / 32 * 1rem);
+    border-style: solid;
+    border-width: calc(7 / 32 * 1rem); 
+  }
+
+  --valuation-type: {
+    position: absolute;
+    top: calc(14 / 32 * 1rem);
+    left: 0;
+    display: block;
+    content: '';
+    border-radius: 0 .1rem .1rem 0;
+    width: calc(10 / 32 * 1rem);
+    height: calc(99 / 32 * 1rem);
   }
 }

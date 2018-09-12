@@ -6,12 +6,14 @@ import { actionType as mainSaga } from '../../models/sagas/main.saga';
 
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-param-reassign */
+/* eslint-disable react/no-did-mount-set-state */
 class Main extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       clickType: 'pe',
       isUp: false,
+      hHeight: 0,
     };
   }
 
@@ -19,6 +21,16 @@ class Main extends PureComponent {
     const { dispatch } = this.props;
 
     dispatch({ type: mainSaga.getData });
+  }
+
+  componentDidMount() {
+    const topDivHeight = this.topDiv.clientHeight;
+
+    setTimeout(() => {
+      this.setState({
+        hHeight: topDivHeight,
+      });
+    }, 20);
   }
 
   sortFunc = (type) => {
@@ -76,15 +88,23 @@ class Main extends PureComponent {
   }
 
   render() {
+    const { hHeight } = this.state;
     const { main } = this.props;
     const sortData = this.sort(main);
 
     return (
       <div className={styles.main}>
-        <Header
-          title="指数估值排行"
-        />
-        <div className={styles.mainBox}>
+        <div
+          ref={(div) => { this.topDiv = div; }}
+        >
+          <Header
+            title="指数估值排行"
+          />
+        </div>
+        <div
+          style={{ marginTop: hHeight }}
+          className={styles.mainBox}
+        >
           <div className={styles.leftBox}>
             <nav className={styles.leftNav}>
               指数名称
