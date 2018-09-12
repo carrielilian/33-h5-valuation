@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "start": "webpack-dev-server --inline --config build/webpack.dev  --hot --progress --open",
-    "build": "rimraf valuation & webpack --config build/webpack.prod"
+    "build": "rimraf index-valuation & webpack --config build/webpack.prod"
   },
   "author": "RidingWind",
   "license": "ISC",

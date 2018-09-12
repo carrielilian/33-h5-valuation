@@ -12,7 +12,7 @@ class Main extends PureComponent {
     this.state = {
       clickType: 'pe',
       isUp: false,
-      hHeight: 0,
+      Height: 0,
     };
   }
 
@@ -24,12 +24,13 @@ class Main extends PureComponent {
 
   componentDidMount() {
     const topDivHeight = this.topDiv.clientHeight;
+    const footerDivHeight = this.footerDiv.clientHeight;
 
     setTimeout(() => {
       this.setState({
-        hHeight: topDivHeight,
+        Height: window.innerHeight - topDivHeight - footerDivHeight,
       });
-    }, 80);
+    }, 10);
   }
 
   sortFunc = (type) => {
@@ -87,7 +88,7 @@ class Main extends PureComponent {
   }
 
   render() {
-    const { hHeight } = this.state;
+    const { Height } = this.state;
     const { main } = this.props;
     const sortData = this.sort(main);
 
@@ -101,101 +102,106 @@ class Main extends PureComponent {
           />
         </div>
         <div
-          style={{ marginTop: hHeight }}
+          style={{ height: Height }}
           className={styles.mainBox}
         >
-          <div className={styles.leftBox}>
-            <nav className={styles.leftNav}>
-              指数名称
-            </nav>
-            {
-              sortData.map((item, index) => (
-                <div key={index}>
-                  <div
-                    className={styles.itemLeft}
-                    data-type={this.assortment(item.pe, item.pePercent)}
-                  >
-                    <div className={styles.itemLeftName}>{item.name}</div>
-                    <div className={styles.itemLeftNum}>{item.code}</div>
+          <div className={styles.fliterBox}>
+            <div className={styles.leftBox}>
+              <nav className={styles.leftNav}>
+                指数名称
+              </nav>
+              {
+                sortData.map((item, index) => (
+                  <div key={index}>
+                    <div
+                      className={styles.itemLeft}
+                      data-type={this.assortment(item.pe, item.pePercent)}
+                    >
+                      <div className={styles.itemLeftName}>{item.name}</div>
+                      <div className={styles.itemLeftNum}>{item.code}</div>
+                    </div>
                   </div>
-                </div>
-              ))
-            }
-          </div>
+                ))
+              }
+            </div>
 
-          <div className={styles.rightBox}>
-            <nav className={styles.rightBoxNav}>
-              <div
-                className={styles.rightNav}
-              >
-                <span
-                  onClick={() => this.sortFunc('pe')}
-                  className={this.getClassName('pe')}
+            <div className={styles.rightBox}>
+              <nav className={styles.rightBoxNav}>
+                <div
+                  className={styles.rightNav}
                 >
-                  PE
-                </span>
-              </div>
-              <div className={styles.rightNav}>
-                <span
-                  onClick={() => this.sortFunc('pePercent')}
-                  className={this.getClassName('pePercent')}
-                >
-                  PE百分位
-                </span>
-              </div>
-              <div className={styles.rightNav}>
-                <span
-                  onClick={() => this.sortFunc('pb')}
-                  className={this.getClassName('pb')}
-                >
-                  PB
-                </span>
-              </div>
-              <div className={styles.rightNav}>
-                <span
-                  onClick={() => this.sortFunc('pbPercent')}
-                  className={this.getClassName('pbPercent')}
-                >
-                  PB百分位
-                </span>
-              </div>
-              <div className={styles.rightNav}>
-                <span
-                  onClick={() => this.sortFunc('yeild')}
-                  className={this.getClassName('yeild')}
-                >
-                  股息率
-                </span>
-              </div>
-              <div className={styles.rightNav}>
-                <span
-                  onClick={() => this.sortFunc('roe')}
-                  className={this.getClassName('roe')}
-                >
-                  ROE
-                </span>
-              </div>
-              <div className={styles.rightNavTime}>
-                <span className={styles.spanItemTime}>起始时间</span>
-              </div>
-            </nav>
-            {
-              sortData.map((item, index) => (
-                <div className={styles.itemRight} key={index}>
-                  <div className={styles.itemRightMain}>{item.pe}</div>
-                  <div className={styles.itemRightMain}>{item.pePercent}</div>
-                  <div className={styles.itemRightMain}>{item.pb}</div>
-                  <div className={styles.itemRightMain}>{item.pbPercent}</div>
-                  <div className={styles.itemRightMain}>{item.yeild}</div>
-                  <div className={styles.itemRightMain}>{item.roe}</div>
-                  <div className={styles.itemRightMainTime}>{item.startDate}</div>
+                  <span
+                    onClick={() => this.sortFunc('pe')}
+                    className={this.getClassName('pe')}
+                  >
+                    PE
+                  </span>
                 </div>
-              ))
-            }
+                <div className={styles.rightNav}>
+                  <span
+                    onClick={() => this.sortFunc('pePercent')}
+                    className={this.getClassName('pePercent')}
+                  >
+                    PE百分位
+                  </span>
+                </div>
+                <div className={styles.rightNav}>
+                  <span
+                    onClick={() => this.sortFunc('pb')}
+                    className={this.getClassName('pb')}
+                  >
+                    PB
+                  </span>
+                </div>
+                <div className={styles.rightNav}>
+                  <span
+                    onClick={() => this.sortFunc('pbPercent')}
+                    className={this.getClassName('pbPercent')}
+                  >
+                    PB百分位
+                  </span>
+                </div>
+                <div className={styles.rightNav}>
+                  <span
+                    onClick={() => this.sortFunc('yeild')}
+                    className={this.getClassName('yeild')}
+                  >
+                    股息率
+                  </span>
+                </div>
+                <div className={styles.rightNav}>
+                  <span
+                    onClick={() => this.sortFunc('roe')}
+                    className={this.getClassName('roe')}
+                  >
+                    ROE
+                  </span>
+                </div>
+                <div className={styles.rightNavTime}>
+                  <span className={styles.spanItemTime}>起始时间</span>
+                </div>
+              </nav>
+              {
+                sortData.map((item, index) => (
+                  <div className={styles.itemRight} key={index}>
+                    <div className={styles.itemRightMain}>{item.pe}</div>
+                    <div className={styles.itemRightMain}>{item.pePercent}</div>
+                    <div className={styles.itemRightMain}>{item.pb}</div>
+                    <div className={styles.itemRightMain}>{item.pbPercent}</div>
+                    <div className={styles.itemRightMain}>{item.yeild}</div>
+                    <div className={styles.itemRightMain}>{item.roe}</div>
+                    <div className={styles.itemRightMainTime}>{item.startDate}</div>
+                  </div>
+                ))
+              }
+            </div>
           </div>
         </div>
 
-        <footer className={styles.footer}>
+        <footer
+          ref={(footer) => { this.footerDiv = footer; }}
+          className={styles.footer}
+        >
           <div className={styles.maxWidth}>
             <div className={styles.footerItem} data-type="估值较低">估值较低</div>
             <div className={styles.footerItem} data-type="估值适中">估值适中</div>
