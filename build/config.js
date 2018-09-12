@@ -4,6 +4,6 @@ const getPath = pathStr => path.resolve(__dirname, pathStr);
 
 module.exports = {
   srcPath: getPath('../src'),
-  distPath: getPath('../valuation'),
+  distPath: getPath('../index-valuation'),
   templatePath: getPath('../public/index.html'),
 };

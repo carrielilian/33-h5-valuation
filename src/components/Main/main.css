@@ -1,0 +1,244 @@
+@import '../../styles/vars.css';
+
+.main {
+  font-size: 1rem;
+  background-color: white;
+}
+
+.main-box {
+  overflow: scroll;
+  max-width: calc(1920 / 32 * 1rem);
+  margin: 0 auto;
+}
+
+.fliter-box {
+  display: flex;
+  font-size: calc(26 / 32 * 1rem);
+  /* align-items: center; */
+  justify-content: space-between;
+}
+
+.left-box {
+  width: 30%;
+  text-align: center;
+  background-color: white;
+  /* padding-bottom: calc(16.5 / 16 * 1rem); */
+}
+
+.left-nav {
+  height: calc(60 / 32 * 1rem);
+  line-height: calc(60 / 32 * 1rem);
+  color: var(--valuation-font-grey);
+  border-bottom: 1px solid var(--valuation-white);
+}
+
+.item-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  height: calc(126 / 32 * 1rem);
+  border-bottom: 1px solid var(--valuation-white);
+}
+
+.item-left[data-type="高估"]::before {
+  @apply --valuation-type;
+
+  background-color: var(--valuation-red);
+}
+
+.item-left[data-type="低估"]::before {
+  @apply --valuation-type;
+
+  background-color: var(--valuation-green);
+}
+
+.item-left[data-type="适中"]::before {
+  @apply --valuation-type;
+
+  background-color: var(--valuation-orange);
+}
+
+.item-left-name {
+  display: inline;
+  font-size: calc(30 / 32 * 1rem);
+  margin-bottom: calc(6 / 32 * 1rem);
+  color: #434343 ;
+}
+
+.item-left-num {
+  display: inline;
+  font-size: calc(24 / 32 * 1rem);
+  color: var(--valuation-font-grey);
+}
+
+.right-box {
+  width: 70%;
+  overflow: scroll;
+  background-color: white;
+}
+
+.right-box-nav {
+  display: flex;
+  align-items: center;
+  color: var(--valuation-font-grey);
+}
+
+.right-nav {
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  width: 33.3333%;
+  height: calc(60 / 32 * 1rem);
+  line-height: calc(60 / 32 * 1rem);
+  text-align: center;
+  border-bottom: 1px solid var(--valuation-white);
+}
+
+.right-nav-time {
+  composes: right-nav;
+  width: 40%;
+}
+
+.span-item {
+  position: relative;
+  margin: 0 auto;
+  font-size: calc(26 / 32 * 1rem)
+}
+
+.span-item::before {
+  @apply --valuation-triangle;
+
+  top: calc(12 / 32 * 1rem);
+  border-color: transparent transparent var(--valuation-triangle-grey) transparent;
+}
+
+.span-item::after {
+  @apply --valuation-triangle;
+
+  bottom: calc(12 / 32 * 1rem);
+  border-color: var(--valuation-triangle-grey) transparent transparent transparent;
+}
+
+.span-item-true {
+  composes: span-item;
+}
+
+.span-item-true::before {
+  @apply --valuation-triangle;
+
+  top: calc(12 / 32 * 1rem);
+  border-color: transparent transparent var(--valuation-triangle-blue) transparent;
+}
+
+.span-item-true::after {
+  @apply --valuation-triangle;
+
+  bottom: calc(12 / 32 * 1rem);
+  border-color: var(--valuation-triangle-grey) transparent transparent transparent;
+}
+
+.span-item-false {
+  composes: span-item;
+}
+
+.span-item-false::before {
+  @apply --valuation-triangle;
+  
+  top: calc(12 / 32 * 1rem);
+  border-color: transparent transparent var(--valuation-triangle-grey) transparent;
+} 
+
+.span-item-false::after {
+  @apply --valuation-triangle;
+
+  bottom: calc(12 / 32 * 1rem);
+  border-color: var(--valuation-triangle-blue) transparent transparent transparent;
+}
+
+.span-item-time {
+  margin: 0 auto;
+}
+
+.item-right {
+  display: flex;
+  align-items: center;
+  height: calc(126 / 32 * 1rem);
+}
+
+.item-right-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 33.3333%;
+  height: 100%;
+  text-align: center;
+  font-size: 1rem;
+  border-bottom: 1px solid var(--valuation-white);
+}
+
+.item-right-main-time {
+  composes: item-right-main;
+  width: 41%;
+}
+
+.footer {
+  font-size: calc(26 / 32 * 1rem);
+  height: calc(88 / 32 * 1rem);
+  width: 100%;
+  color: #333333;
+  background-color: white;
+}
+
+.max-width {
+  max-width: calc(1920 / 32 * 1rem);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.footer-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33.3333%;
+  line-height: calc(88 / 32 * 1rem);
+  text-align: center;
+}
+
+.footer-item::before {
+  display: block;
+  content: '';
+  width: calc(15 / 32 * 1rem);
+  height: calc(15 / 32 * 1rem);
+  margin-right: calc(15 / 32 * 1rem);
+}
+
+.footer-item[data-type="估值较低"]::before {
+  background-color: var(--valuation-green);
+}
+
+.footer-item[data-type="估值适中"]::before {
+  background-color: var(--valuation-orange);
+}
+
+.footer-item[data-type="估值较高"]::before {
+  background-color: var(--valuation-red);
+}
+
+/* @media screen and (min-width: 430px) {
+  .left-box {
+    width: 30%;
+    text-align: center;
+    background-color: white;
+    padding-bottom: calc(32.5 / 16 * 1rem);
+  }
+
+  .right-box {
+    margin-bottom: calc(120 / 32 * 1rem);
+  }
+} */
